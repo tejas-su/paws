@@ -93,13 +93,11 @@ class _IntroPageState extends State<IntroPage> {
             const SizedBox(
               height: 10,
             ),
-            GestureDetector(
+            CTAButton(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const LoginPage(),
+                builder: (context) => LoginPage(),
               )),
-              child: const CTAButton(
-                text: 'Get Started',
-              ),
+              text: 'Get Started',
             ),
             const Padding(
               padding: EdgeInsets.all(8.0),

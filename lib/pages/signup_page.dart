@@ -5,8 +5,19 @@ import 'package:paws/widgets/cta_buton.dart';
 import 'package:paws/widgets/text_button_login.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+  SignUpPage({super.key});
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
+  void signUp() {
+    //show loading circle
+
+    //make sure the password match
+
+    //create user using firebase auth
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,30 +74,36 @@ class SignUpPage extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                          const LoginBtn1(
-                            hintText: 'Phone number or E-mail',
+                          LoginBtn1(
+                            controller: emailController,
+                            hintText: 'happypaws@paws.com',
                             obscureText: false,
                           ),
                           const SizedBox(
                             height: 20,
                           ),
-                          const LoginBtn1(
+                          LoginBtn1(
+                            controller: passwordController,
                             hintText: 'Password',
-                            icon: Icon(Icons.lock_outline_rounded),
+                            icon: const Icon(Icons.lock_outline_rounded),
                             obscureText: true,
                           ),
                           const SizedBox(
                             height: 20,
                           ),
-                          const LoginBtn1(
+                          LoginBtn1(
+                            controller: confirmPasswordController,
                             hintText: 'Confirm Password',
-                            icon: Icon(Icons.lock_outline_rounded),
+                            icon: const Icon(Icons.lock_outline_rounded),
                             obscureText: true,
                           ),
                           const SizedBox(
                             height: 20,
                           ),
-                          const CTAButton(text: 'Signup'),
+                          CTAButton(
+                            text: 'Signup',
+                            onTap: signUp,
+                          ),
                           const SizedBox(
                             height: 10,
                           ),
@@ -104,7 +121,7 @@ class SignUpPage extends StatelessWidget {
                                 onTap: () {
                                   Navigator.of(context).pop(
                                     MaterialPageRoute(
-                                      builder: (context) => const SignUpPage(),
+                                      builder: (context) => SignUpPage(),
                                     ),
                                   );
                                 },

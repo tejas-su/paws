@@ -5,10 +5,12 @@ class LoginBtn1 extends StatelessWidget {
   final String hintText;
   final Icon? icon;
   final bool obscureText;
+  final TextEditingController? controller;
 
   const LoginBtn1(
       {super.key,
       required this.hintText,
+      required this.controller,
       this.icon,
       required this.obscureText});
   @override
@@ -30,6 +32,7 @@ class LoginBtn1 extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 5, right: 5),
           child: TextField(
+            controller: controller,
             obscureText: obscureText,
             textAlign: TextAlign.left,
             decoration: InputDecoration(
