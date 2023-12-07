@@ -2,22 +2,57 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:paws/themes/themes.dart';
 import 'package:paws/widgets/cta_buton.dart';
+import 'package:paws/widgets/show_message.dart';
 import 'package:paws/widgets/text_button_login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class SignUpPage extends StatelessWidget {
-  SignUpPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
-  void signUp() {
+  Future<void> signUp() async {
     //show loading circle
-
+    showDialog(
+        context: context,
+        builder: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ));
     //make sure the password match
-
+    if (passwordController.text != confirmPasswordController.text) {
+      Navigator.pop(context);
+      //show error message
+      showMessage('Passwords dosen\'t match', context);
+    }
     //create user using firebase auth
+    else {
+      try {
+        UserCredential? userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: emailController.text,
+                password: confirmPasswordController.text);
+
+        //remove loading circle
+        Navigator.pop(context);
+        //show account created
+        showMessage('Account Created Successfully', context);
+      } on FirebaseAuthException catch (e) {
+        //pop the loading circle
+        Navigator.pop(context);
+        //show the error message to the user
+        showMessage('$e', context);
+      }
+    }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +121,7 @@ class SignUpPage extends StatelessWidget {
                             controller: passwordController,
                             hintText: 'Password',
                             icon: const Icon(Icons.lock_outline_rounded),
-                            obscureText: true,
+                            obscureText: false,
                           ),
                           const SizedBox(
                             height: 20,
@@ -95,7 +130,7 @@ class SignUpPage extends StatelessWidget {
                             controller: confirmPasswordController,
                             hintText: 'Confirm Password',
                             icon: const Icon(Icons.lock_outline_rounded),
-                            obscureText: true,
+                            obscureText: false,
                           ),
                           const SizedBox(
                             height: 20,

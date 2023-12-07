@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:paws/pages/login_page.dart';
+import 'package:paws/auth/auth.dart';
 import 'package:paws/widgets/cta_buton.dart';
 
 class IntroPage extends StatefulWidget {
@@ -95,7 +95,7 @@ class _IntroPageState extends State<IntroPage> {
             ),
             CTAButton(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => LoginPage(),
+                builder: (context) => const AuthPage(),
               )),
               text: 'Get Started',
             ),

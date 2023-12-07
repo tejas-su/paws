@@ -1,14 +1,46 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:paws/pages/signup_page.dart';
 import 'package:paws/themes/themes.dart';
 import 'package:paws/widgets/cta_buton.dart';
+import 'package:paws/widgets/show_message.dart';
 import 'package:paws/widgets/text_button_login.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+
+  Future<void> signIn() async {
+    //show loading circle
+    showDialog(
+        context: context,
+        builder: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ));
+    //sign in the user with his credential
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+      if (context.mounted) {
+        Navigator.pop(context);
+      }
+    } on FirebaseAuthException catch (e) {
+      //re,ove the loading screen
+      Navigator.pop(context);
+      //show the error message o the user
+      showMessage('$e', context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +116,7 @@ class LoginPage extends StatelessWidget {
                           ),
                           CTAButton(
                             text: 'Sign In',
-                            onTap: () {},
+                            onTap: signIn,
                           ),
                           const SizedBox(
                             height: 30,
