@@ -32,8 +32,8 @@ dependencies:
     sdk: flutter
   google_fonts:
   lottie:
-  dots_indicator:
   carousel_slider:
+  flutter_screenutil:
   
 
   # The following adds the Cupertino Icons font to your application.
