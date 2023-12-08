@@ -35,10 +35,10 @@ class _SignUpPageState extends State<SignUpPage> {
     //create user using firebase auth
     else {
       try {
-        UserCredential? userCredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-                email: emailController.text,
-                password: confirmPasswordController.text);
+        //UserCredential? userCredential =
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: emailController.text,
+            password: confirmPasswordController.text);
 
         //remove loading circle
         Navigator.pop(context);

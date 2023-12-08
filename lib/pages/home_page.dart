@@ -104,7 +104,26 @@ class HomePage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              CTAButton(text: 'Adopt Now', onTap: () {})
+              CTAButton(text: 'Adopt Now', onTap: () {}),
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(30)),
+                  child: Image.asset(
+                    'assets/images/cat1.jpeg',
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              CTAButton(text: 'Adopt Now', onTap: () {}),
+              const SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ));
