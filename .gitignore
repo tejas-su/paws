@@ -46,3 +46,12 @@ app.*.map.json
 
 firebase_options.dart
 google-services.json
+pubspec.lock
+generated_plugin_registrant.cc 
+generated_plugin_registrant.h 
+generated_plugins.cmake 
+GeneratedPluginRegisttrant.swift
+generated_plugin_registrant.cc 
+generated_plugin_registrant.h 
+generated_plugins.cmake 
+.gitignore
