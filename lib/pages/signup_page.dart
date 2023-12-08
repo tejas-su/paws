@@ -156,7 +156,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 onTap: () {
                                   Navigator.of(context).pop(
                                     MaterialPageRoute(
-                                      builder: (context) => SignUpPage(),
+                                      builder: (context) => const SignUpPage(),
                                     ),
                                   );
                                 },
