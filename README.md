@@ -1,2 +1,3 @@
-# paws
-A simple and minimalist pet store app built using flutter.
+# Paws 🐾:  A simple Flutter Pet Store App with Lottie Animations and Firebase Authentication
+
+
